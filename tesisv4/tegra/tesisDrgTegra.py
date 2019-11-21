@@ -87,7 +87,7 @@ class Stit(threading.Thread):
         while True:
             if self.args.time:
                 print("[STIT] Tomando tiempo")
-                start = time.time()
+#                start = time.time()
 
 
             imagenes = []
@@ -100,6 +100,7 @@ class Stit(threading.Thread):
             imagenes.append(self.cola.get())
             imagenes.append(self.cola.get())
 
+            start = time.time()
             if imagenes is None:
                 print("[STIT] No se pudo leer imagen ")
             #if len(imagenes) > 4:
@@ -143,14 +144,15 @@ class Proce(threading.Thread):
         filtro = 0
         if self.args.time:
             end = time.time()
-            print("[PROCE] Tiempo carda de pesos: ", end - start)
+            print("[PROCE] Tiempo carga de pesos: ", end - start)
         if self.args.filtro:
             filtro = 1
         while True:
             if self.args.time:
                 print("[PROCE] Tomando tiempo")
-                start = time.time()
+#               start = time.time()
             img = self.colaProce.get()
+            start = time.time()
             r = dn.detect(filtro, i, self.args.show, net, meta, img)
             print("[PROCE] ", i, " ", r)
             if self.args.time:
