@@ -9,7 +9,7 @@ import sys
 import argparse
 import signal
 
-path_capturas = "/home/pi/Tesis/multiplexV2/CapturasFast/"
+path_capturas = "/home/pi/ImageProcessing/multiplexV2/CapturasFast/"
 
 class Envio(threading.Thread):
   def __init__(self, cola, args):
@@ -20,7 +20,7 @@ class Envio(threading.Thread):
 
   def run(self):
 
-    host = "192.168.0.171"
+    host = "localhost"
     port = 9996
     if self.args.port:
         port = self.args.port
