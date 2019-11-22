@@ -125,6 +125,11 @@ class IVPort():
         else:
             print "Camera is not opened."
 
+    def get_frame(self, **options):
+        if self.is_opened:
+            return self.picam.camera_get_capture()
+        else:
+            print "Camera is not opened."
 #    def camera_sequence(self, **options):
 #        if self.is_opened:
 #            self.picam.capture_sequence(**options)
