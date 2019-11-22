@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import sys
+sys.path.append('/opt/nvidia/jetson-gpio/lib/python')
+sys.path.append('/opt/nvidia/jetson-gpio/lib/python/Jetson/GPIO')
 
 try:
     import IIC #TODO instalar smbus con pip, y deberia funcionar .ademas ver otros paquetes de apt aca https://github.com/juanmed/nano_gpio
@@ -110,11 +112,11 @@ class IVPort():
     # Camera V2
     # capture_sequence and start_recording require "camera_v2=True"
     # standart capture function doesnt require "camera_v2=True"
-    def camera_open(self, camera_v2=False, resolution=None, framerate=None, grayscale=False):
+    def camera_open(self, camera_v2=False, resolution=(1280,720), framerate=1, grayscale=False):
         if self.is_opened: return
         self.picam = camera.Camera(resolution=resolution, framerate=framerate)
 #        if grayscale: self.picam.color_effects = (128, 128)
-#        self.is_opened = True
+        self.is_opened = True
 
     # picamera capture
     def camera_capture(self, filename, **options):
