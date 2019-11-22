@@ -29,27 +29,31 @@ def gstreamer_pipeline(
         )
     )
 
-
-def capture(camera,flip_method=0):
-    cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=flip_method), cv2.CAP_GSTREAMER)
+def capture(camera,cap):
+    cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2,framerate=0.25), cv2.CAP_GSTREAMER)
     if cap.isOpened():
         ret_val, img = cap.read()
-        cv2.imwrite("still_CAM%d.jpg" % camera + '.jpg', img)
-        cap.release()
+	if ret_val:
+		cv2.imshow('im',img)
+        #cv2.imwrite("still_CAM%d.jpg" % camera + '.jpg', img)
+        #cap.release()
     else:
         print("Unable to open camera")
 
 
 iv = ivport.IVPort(ivport.TYPE_QUAD2,iv_jumper='A')
-iv.camera_open(camera_v2=True, resolution=(640, 480),framerate=10)
+
+#iv.camera_open(camera_v2=True,framerate=10)
 
 for camera in range(1,4):
     iv.camera_change(camera)
-    for i in range(0,100):
-        im = iv.get_frame()
-        cv2.imshow('im',im)
+    for i in range(0,10):
+        capture(1,None)
+        #im = iv.get_frame()
+        #cv2.imshow('im',im)
         cv2.waitKey(1)
 
 
 iv.close()
+
 
