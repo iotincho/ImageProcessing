@@ -121,6 +121,14 @@ class IVPort():
         else:
             print "Camera is not opened."
 
+    def get_photo(self, **options):
+        raw = picamera.array.PiRGBArray(self.picam)
+        if self.is_opened:
+            self.picam.capture(raw, format='bgr', **options)
+            return raw.array
+        else:
+            print "Camera is not opened."
+
     def camera_sequence(self, **options):
         if self.is_opened:
             self.picam.capture_sequence(**options)
