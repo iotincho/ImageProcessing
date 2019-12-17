@@ -37,7 +37,7 @@ def gstreamer_pipeline(
 
 class Camera:
     def __init__(self,
-                resolution=(1280,720),
+                resolution=(1280, 720),
                 display_width=1280,
                 display_height=720,
                 framerate=1,
