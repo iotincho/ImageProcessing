@@ -93,7 +93,7 @@ class Stit(threading.Thread):
             imagenes = []
             if self.args.verbose:
                 print("[STIT] Estoy en Stit")
-            stitcher = cv.createStitcher(try_use_gpu=False)
+            stitcher = cv.Stitcher_create()#try_use_gpu=False)
 
             imagenes.append(self.cola.get())
             imagenes.append(self.cola.get())

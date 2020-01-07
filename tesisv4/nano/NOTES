@@ -1,0 +1,1 @@
+- Si no detecta la camara -> /dev/video0 -> ejecutar init_ivport.py y rebootear

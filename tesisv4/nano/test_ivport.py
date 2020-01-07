@@ -52,4 +52,3 @@ capture(3)
 iv.camera_change(4)
 capture(4,flip_method=2)
 iv.close()
-
